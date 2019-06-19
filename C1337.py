@@ -32,19 +32,12 @@ class Auth:
     password_input = "user_password"
     connect_button = "commit"
     browser = None
-    thankyou = """
-          -----------------------------------------------------
-          All Done ! Thanks for using PronoteDownloader !
-          -----------------------------------------------------
-          By Anas Mazouni -  Stormix (https://stormix.co)
-          """
-
     def __init__(self, url, email, password):
         self.url = url
         self.username = email
         self.password = password
 
-    def launchBrowser(self):
+    def launchBrowser(self,headless == false):
         assert not self.browser, "Browser already set !"
         # Initiate the Browser webdriver
         currentfolder = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
@@ -56,7 +49,11 @@ class Auth:
             # Windows
             chrome_driver = "Drivers/chromedriver.exe"
         print("Chrome Driver Location : "+chrome_driver)
-        self.browser = webdriver.Chrome(chrome_driver)
+        options = webdriver.ChromeOptions()
+        if(headless):
+            options.add_argument('headless')
+        self.browser = webdriver.Chrome(
+            executable_path=chrome_driver, chrome_options=options)
         Browser = self.browser
         Website = self.url
         # Open Pronote
