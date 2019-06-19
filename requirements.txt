@@ -4,4 +4,4 @@ clint==0.5.1
 idna==2.5
 requests==2.20.0
 selenium==3.4.3
-urllib3==1.21.1
+urllib3==1.24.2
